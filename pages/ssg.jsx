@@ -1,4 +1,5 @@
 import SubLayout from '@/components/SubLayout';
+import data from '@/public/members.json';
 
 function Ssg(props) {
 	return (
@@ -17,6 +18,15 @@ function Ssg(props) {
 
 				-> 일정 시간마다 바뀌길 원한다면 ISR (일정 시간마다 빌드)
 			*/}
+
+			{props.members.map((member, idx) => {
+				return (
+					<article key={idx}>
+						<h2>{member.name}</h2>
+						<p>{member.position}</p>
+					</article>
+				);
+			})}
 		</SubLayout>
 	);
 }
@@ -25,7 +35,7 @@ export async function getStaticProps() {
 	console.log('ssg');
 
 	return {
-		props: { now: performance.now() },
+		props: { now: performance.now(), members: data.members },
 	};
 }
 
