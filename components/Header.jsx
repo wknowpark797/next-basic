@@ -28,6 +28,11 @@ function Header() {
 						ISR
 					</Link>
 				</li>
+				<li>
+					<Link href='/post' className={currentPath === '/post' ? styles.on : ''}>
+						POST
+					</Link>
+				</li>
 			</ul>
 		</header>
 	);
