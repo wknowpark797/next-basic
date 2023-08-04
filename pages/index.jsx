@@ -1,5 +1,8 @@
 import Head from 'next/head';
-import Header from '@/components/Header'; // @ : 루트경로
+import styles from '@/styles/Home.module.scss'; // @ : 루트경로
+import Header from '@/components/Header';
+import Image from 'next/image';
+import pic from '@/public/img/pic.jpg';
 
 export default function Home() {
 	return (
@@ -10,9 +13,14 @@ export default function Home() {
 				<meta name='viewport' content='width=device-width, initial-scale=1' />
 				<link rel='icon' href='/favicon.ico' />
 			</Head>
+
 			<main>
 				<Header />
 				<h1>Main</h1>
+
+				<div className={styles.pic}>
+					<Image src={pic} alt='pic' fill quality={80} />
+				</div>
 			</main>
 		</>
 	);
