@@ -10,6 +10,9 @@ const nextConfig = {
 	images: {
 		domains: ['images.unsplash.com'],
 	},
+	async redirects() {
+		return [{ source: '/redirect', destination: '/', permanent: true }];
+	},
 };
 
 module.exports = nextConfig;
