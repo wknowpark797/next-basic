@@ -3,8 +3,23 @@ import styles from '@/styles/Home.module.scss'; // @ : 루트경로
 import Header from '@/components/Header';
 import Image from 'next/image';
 import pic from '@/public/img/pic.jpg';
+import { useEffect } from 'react';
+
+// api 라우팅: 서버요청 처리를 위해서는 express 프레임워크를 활용
+// -> next에서는 api폴더 안쪽에 서버쪽 요청 및 응답에 대한 라우팅 설정 가능
+// api 폴더 안쪽의 파일명이 라우터 요청명으로 자동 설정 (ex. /api/hello)
 
 export default function Home() {
+	// 서버쪽에서 프리렌더된 페이지를 가져온 이후
+	// 클라이언트쪽에서 다시 서버쪽 요청 가능
+	// next 자체적으로 서버쪽 요청, 응답 처리
+	useEffect(() => {
+		// api 폴더 안쪽의 hello.js에 서버요청 처리
+		fetch('/api/hello')
+			.then((res) => res.json())
+			.then((json) => console.log(json));
+	}, []);
+
 	return (
 		<>
 			<Head>
