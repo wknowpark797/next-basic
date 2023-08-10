@@ -1,11 +1,13 @@
-// 서브 페이지 전용 레이아웃
+/* 서브 페이지 전용 레이아웃 */
+
 import Head from 'next/head';
 import Header from './Header';
 import styles from './SubLayout.module.scss';
 import { Orbitron, Noto_Sans_KR } from 'next/font/google';
+import clsx from 'clsx';
 
-const orbitron = Orbitron({ subsets: ['latin'], weight: ['400', '500'], preload: true, variable: '--orbitron' });
-const notoSans = Noto_Sans_KR({ subsets: [], weight: ['100', '300'], preload: true, variable: '--notoSans' });
+const orbitron = Orbitron({ subsets: ['latin'], weight: ['400', '500'], preload: true });
+const notoSans = Noto_Sans_KR({ subsets: ['latin'], weight: ['100', '300'], preload: true });
 
 function SubLayout(props) {
 	return (
@@ -17,9 +19,9 @@ function SubLayout(props) {
 			<section>
 				<Header />
 
-				<div className={styles.subLayout}>
-					<h1 className={orbitron.className}>{props.name}</h1>
-					<p className={notoSans.className}>레이아웃 컨텐츠 페이지입니다.</p>
+				<div className={clsx(styles.subLayout, orbitron.className)}>
+					<h1>{props.name}</h1>
+					<p>레이아웃 컨텐츠 페이지입니다.</p>
 					{props.children}
 				</div>
 			</section>

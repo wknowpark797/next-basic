@@ -9,10 +9,7 @@ function Post() {
 	const handleSubmit = (e) => {
 		e.preventDefalut();
 
-		const item = {
-			title: Tit,
-			content: Con,
-		};
+		const item = { title: Tit, content: Con };
 
 		axios
 			.post('/api/post', item)
@@ -30,7 +27,7 @@ function Post() {
 		axios
 			.get('/api/post')
 			.then((json) => {
-				console.log(json);
+				console.log('GET 방식: ', json);
 			})
 			.catch((err) => console.log(err));
 	}, []);

@@ -2,7 +2,7 @@
 	padding: 100px 10vw;
 
 	h1 {
-		font-family: var('--orbitron');
+		font-family: var(--font-orbitron);
 		font-size: 50px;
 		font-weight: 400;
 		color: #555;
@@ -10,7 +10,7 @@
 	}
 
 	p {
-		font-family: var('--notoSans');
+		font-family: var(--font-notoSans);
 		font-size: 20px;
 		font-weight: 300;
 		color: #777;

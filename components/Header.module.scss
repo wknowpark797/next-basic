@@ -16,6 +16,10 @@
 			font-family: var(--font-orbitron);
 			font-weight: 500;
 			color: #fff;
+
+			&.on {
+				color: hotpink;
+			}
 		}
 	}
 

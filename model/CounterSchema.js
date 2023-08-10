@@ -10,5 +10,5 @@ const counterSchema = new mongoose.Schema(
 );
 
 // 스키마를 적용한 모델 생성함수를 export
-const Counter = mongoose.model('Counter', counterSchema);
+const Counter = mongoose.models.Counter || mongoose.model('Counter', counterSchema);
 export { Counter };

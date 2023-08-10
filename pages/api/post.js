@@ -33,6 +33,7 @@ export default async function handler(req, res) {
 					// 결합된 객체를 Community Model 객체로 DB에 저장
 					const CommunityModel = new Community(temp);
 					CommunityModel.save().then(() => {
+						// 글 저장이 완료되면 Counter 모델의 communityNum값을 1증가
 						Counter.updateOne({ name: 'counter' }, { $inc: { communityNum: 1 } })
 							.exec()
 							.then(() => {
