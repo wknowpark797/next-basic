@@ -4,7 +4,7 @@ import mongoose from 'mongoose';
 const counterSchema = new mongoose.Schema(
 	{
 		name: String,
-		community: Number,
+		communityNum: Number,
 	},
 	{ collection: 'Counter' }
 );

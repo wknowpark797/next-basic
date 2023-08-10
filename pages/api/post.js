@@ -4,6 +4,17 @@ import { Counter } from '@/model/CounterSchema';
 
 // 안쪽에서 await로 동기화 처리를 할 예정이므로 wrapping함수에 async 지정
 export default async function handler(req, res) {
+	// 전달된 요청 방식이 GET일 때 처리 (글 호출)
+	if (req.method === 'GET') {
+		try {
+			await connectMongoDB();
+			const community = await Community.find();
+			res.status(200).send(community);
+		} catch (err) {
+			res.status(400).send({ err });
+		}
+	}
+
 	// 전달된 요청 방식이 POST일 때 처리 (글 저장)
 	if (req.method === 'POST') {
 		// 클라이언트로부터 전달받은 데이터 정보 {title, content}
