@@ -16,25 +16,34 @@ export default function Home() {
 	// 서버쪽에서 프리렌더된 페이지를 가져온 이후
 	// 클라이언트쪽에서 다시 서버쪽 요청 가능
 	// next 자체적으로 서버쪽 요청, 응답 처리
-	useEffect(() => {
-		// api 폴더 안쪽의 hello.js에 서버요청 처리
-		// fetch 함수의 두번째 인수로 옵션값을 설정하지 않으면 GET방식으로 전송요청
-		// { method: 전송방식, body: 전달값(문자값) }
-		fetch('/api/hello', {
-			method: 'POST',
-			body: 'abc',
-		})
-			.then((res) => res.json())
-			.then((json) => console.log(json));
+	/*
+		useEffect(() => {
+			// api 폴더 안쪽의 hello.js에 서버요청 처리
+			// fetch 함수의 두번째 인수로 옵션값을 설정하지 않으면 GET방식으로 전송요청
+			// { method: 전송방식, body: 전달값(문자값) }
+			fetch('/api/hello', {
+				method: 'POST',
+				body: 'abc',
+			})
+				.then((res) => res.json())
+				.then((json) => console.log('hello post: ', json));
 
-		fetch('/api/hello')
-			.then((res) => res.json())
-			.then((json) => console.log(json));
+			fetch('/api/hello')
+				.then((res) => res.json())
+				.then((json) => console.log('hello get: ', json));
 
-		fetch('/api/members')
-			.then((res) => res.json())
-			.then((json) => console.log(json));
-	}, []);
+			fetch('/api/members', {
+				method: 'POST',
+				body: 'members',
+			})
+				.then((res) => res.json())
+				.then((json) => console.log('members post: ', json));
+
+			fetch('/api/members')
+				.then((res) => res.json())
+				.then((json) => console.log('members get: ', json));
+		}, []);
+	*/
 
 	return (
 		<>
