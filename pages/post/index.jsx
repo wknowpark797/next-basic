@@ -7,7 +7,7 @@ function Post() {
 	const [Con, setCon] = useState('');
 
 	const handleSubmit = (e) => {
-		e.preventDefalut();
+		e.preventDefault();
 
 		const item = { title: Tit, content: Con };
 
