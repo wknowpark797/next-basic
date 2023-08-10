@@ -9,5 +9,5 @@ const communitySchema = new mongoose.Schema(
 	{ collection: 'Community' }
 );
 
-const Community = mongoose.model('Counter', communitySchema);
+const Community = mongoose.model('Community', communitySchema);
 export { Community };

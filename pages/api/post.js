@@ -1,14 +1,40 @@
 import { connectMongoDB } from '@/libs/MongoConnect';
+import { Community } from '@/model/CommunitySchema';
+import { Counter } from '@/model/CounterSchema';
 
 // 안쪽에서 await로 동기화 처리를 할 예정이므로 wrapping함수에 async 지정
 export default async function handler(req, res) {
-	// await로 동기화하므로 then, catch문을 쓸 수 없으니 try, catch문으로 예외처리
-	try {
-		// 요청 성공시 실행될 구문
-		const DB = await connectMongoDB();
-	} catch (err) {
-		// 요청 실패시 실행될 구문
-		res.status(400).send({ err });
+	// 전달된 요청 방식이 POST일 때 처리 (글 저장)
+	if (req.method === 'POST') {
+		// 클라이언트로부터 전달받은 데이터 정보 {title, content}
+		const temp = req.body;
+
+		// await로 동기화하므로 then, catch문을 쓸 수 없으니 try, catch문으로 예외처리
+		try {
+			// 요청 성공시 실행될 구문
+			await connectMongoDB();
+			Counter.findOne({ name: 'counter' })
+				.exec()
+				.then((doc) => {
+					// 카운터 모델에서 가져온 글 고유번호를 클라이언트에서 넘어온 데이터에 추가
+					temp.communityNum = doc.communityNum;
+
+					// 결합된 객체를 Community Model 객체로 DB에 저장
+					const CommunityModel = new Community(temp);
+					CommunityModel.save().then(() => {
+						Counter.updateOne({ name: 'counter' }, { $inc: { communityNum: 1 } })
+							.exec()
+							.then(() => {
+								// 카운터 정보값도 갱신이 완료되면 클라이언트쪽에 저장 성공응답 전달
+								res.json({ success: true });
+							})
+							.catch((err) => res.json({ success: false, err: err }));
+					});
+				});
+		} catch (err) {
+			// 요청 실패시 실행될 구문
+			res.status(400).send({ err });
+		}
 	}
 }
 
