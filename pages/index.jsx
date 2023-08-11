@@ -7,6 +7,7 @@ import { useEffect } from 'react';
 import { FaDev } from 'react-icons/fa6';
 import { FcServices } from 'react-icons/fc';
 import { IconContext } from 'react-icons';
+import { useGlobalData } from '@/hooks/useGlobalContext';
 
 // api 라우팅: 서버요청 처리를 위해서는 express 프레임워크를 활용
 // -> next에서는 api폴더 안쪽에 서버쪽 요청 및 응답에 대한 라우팅 설정 가능
@@ -44,6 +45,9 @@ export default function Home() {
 				.then((json) => console.log('members get: ', json));
 		}, []);
 	*/
+
+	const data = useGlobalData();
+	console.log('Main GlobalData: ', data);
 
 	return (
 		<>
