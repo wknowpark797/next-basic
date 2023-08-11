@@ -73,6 +73,14 @@ export default function Home() {
 			<main>
 				<Header />
 				<h1>Main</h1>
+				<button
+					onClick={() => {
+						firebase.auth().signOut();
+						alert('로그아웃 되었습니다.');
+					}}
+				>
+					로그아웃
+				</button>
 
 				{/* 
 					IconContext.Provider 컴포넌트 import 후 웹폰트 아이콘을 활용한 부모요소에 wrapping 해주면 

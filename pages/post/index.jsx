@@ -2,6 +2,7 @@ import SubLayout from '@/components/SubLayout';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 import { useGlobalData } from '@/hooks/useGlobalContext';
+import Login from '@/components/Login';
 
 function Post() {
 	const [Tit, setTit] = useState('');
@@ -37,6 +38,8 @@ function Post() {
 
 	return (
 		<SubLayout>
+			<Login />
+
 			<p>포스트 페이지 intro 화면입니다.</p>
 
 			<div className='input-box'>
